@@ -1,0 +1,114 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block contain %}
+
+<script>
+    function checkpass() {
+        const pwd = document.signup.pwd.value;
+        const cpwd = document.signup.cpwd.value;
+        if (pwd !== cpwd) {
+            alert("Password and Confirm Password fields do not match");
+            document.signup.pwd.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+
+<form action="" onsubmit="return checkpass()" method="post" name="signup" class="container mt-5"
+    style="max-width: 500px; margin: auto; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;"
+    enctype="multipart/form-data">
+    <h1 class="mb-5" style="text-align: center; font-family: 'Times New Roman', Times, serif;"> ! Recruiter Signup !</h1>
+    {% csrf_token %}
+
+    <div class="form-row row">
+        <div class="form-group col-md-6">
+            <label for="first" style="font-weight: bold;">First Name</label>
+            <input type="text" id="first" name="first" class="form-control" placeholder="Enter First Name" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="last" style="font-weight: bold;">Last Name</label>
+            <input type="text" id="last" name="last" class="form-control" placeholder="Enter Last Name" required>
+        </div>
+    </div>
+
+    <div class="form-row row">
+        <div class="form-group col-md-6">
+            <label for="contact" style="font-weight: bold;">Contact</label>
+            <input type="text" id="contact" name="contact" class="form-control" placeholder="Enter Contact Number" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="first" style="font-weight: bold;">Company</label>
+            <input type="text" id="first" name="company" class="form-control" placeholder="Enter Yuor Comapny name" required>
+        </div>
+    </div>
+
+    <div class="form-row row">
+        <div class="form-group col-md-6">
+            <label for="caddress" style="font-weight: bold;">Company Addreess</label>
+            <input type="text" id="caddress" name="caddress" class="form-control" placeholder="Enter Company Address" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="industry" style="font-weight: bold;">Industry</label>
+            <input type="text" id="industry" name="industry" class="form-control" placeholder="Enter Yuor Industry" required>
+        </div>
+    </div>
+
+    <div class="form-row row">
+        <div class="form-group col-md-12">
+            <label for="email" style="font-weight: bold;">Email ID</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email ID" required>
+        </div>
+    </div>
+
+    <div class="form-row row">
+        <div class="form-group col-md-6">
+            <label for="pwd" style="font-weight: bold;">Password</label>
+            <input type="password" id="pwd" name="pwd" class="form-control" placeholder="Enter Password" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="cpwd" style="font-weight: bold;">Confirm Password</label>
+            <input type="password" id="cpwd" name="cpwd" class="form-control" placeholder="Confirm Password" required>
+        </div>
+    </div>
+
+    <div class="form-row row"> 
+        <div class="form-group col-md-12">
+            <label for="img" style="font-weight: bold;">Image</label>
+            <input type="file" id="img" name="img" class="form-control">
+        </div>
+    </div>
+
+    <div class="text-center mb-3">
+        <input type="submit" value="Submit" class="btn btn-success mt-3">
+        <a href="{% url 'recruiter' %}" class="btn btn-primary mt-3">Back To Recruiter Login</a>
+    </div>
+</form>
+
+{% if error == "no" %}
+<script>
+    alert("Signup Successfully");
+    window.location = '{% url "user_login" %}';
+</script>
+{% elif error == "yes" %}
+<script>
+    alert("Something went wrong");
+</script>
+{% endif %}
+
+
+{% endblock %}

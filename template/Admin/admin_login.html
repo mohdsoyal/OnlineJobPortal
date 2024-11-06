@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block contain %}
+<style>
+    .msg{
+        text-align: center;
+        font-weight: bold;
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+    }
+</style>
+
+
+{% if messages %}
+    {% for message in messages %}
+        <h1 class="msg">{{ message }}</h1>
+    {% endfor %}
+{% endif %}
+
+<form action="" method="post" class="container mt-5" style="max-width: 500px; margin: auto; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+    <h1 style="text-align: center; font-family: 'Times New Roman', Times, serif;">! Admin Login !</h1>
+    {% csrf_token %}
+
+    <div class="mb-4">
+        <label for="username" style="font-weight: bold;">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter Username" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="password" style="font-weight: bold;">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" class="form-control">
+    </div>
+    <div class="text-center mb-3" >
+        <input type="submit" value="Login" class="btn btn-success mt-3">
+    </div>
+   
+</form>
+
+{% endblock %}
+

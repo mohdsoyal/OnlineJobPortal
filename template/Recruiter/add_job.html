@@ -1,0 +1,80 @@
+{% include 'Recruiter/recuiter_navbar.html' %}
+{% block contain %}
+
+
+<style>
+    label{
+      font-weight: bold;
+    }
+</style>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <h1{% if message.tags %} class="{{ message.tags }}" {% endif %} style="text-align: center;">{{ message }}</h1>
+        {% endfor %}
+</ul>
+{% endif %}
+<form action="" method="post" enctype="multipart/form-data"
+    style="max-width: 600px; margin: 0 auto; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-12">
+            <label for="">Job Title</label>
+            {{ fm.job_title }}
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-6">
+            <label for="">Start Date</label>
+            {{ fm.start_date }}
+        </div>
+        <div class="col-6">
+            <label for="">End Date</label>
+            {{ fm.end_date }}
+        </div>
+
+        <div class="col-6">
+            <label for="">Salary (Per Month)</label>
+            {{ fm.job_salary }}
+        </div>
+
+        <div class="col-6">
+            <label for="">image</label>
+            {{ fm.image }}
+        </div> 
+
+        <div class="col-6">
+            <label for="">Experience</label>
+            {{ fm.experience }}
+        </div>
+
+        <div class="col-6">
+            <label for="">Location</label>
+            {{ fm.location }}
+        </div> 
+
+        <div class="col-12">
+            <label for="">Skill</label>
+            {{ fm.skill }}
+        </div> 
+
+        <div class="col-12 mt-3">
+            <label for="">Description</label>
+            {{ fm.description }}
+        </div>
+
+        <div class="col-12">
+            <label for="">Created Date</label>
+            {{ fm.created_date }}
+        </div> 
+    </div>
+    
+
+    <div class="text-center mb-3 mt-4">
+        <input type="submit" value="Submit" class="btn btn-success">
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,122 @@
+{% include 'Recruiter/recuiter_navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic CSS to style the table and make it responsive -->
+    <style>
+        /* General Table Styles */
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        /* Mobile Styles (max-width 768px) */
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+                font-size: 14px;
+            }
+
+            /* Hide table headers */
+            thead {
+                display: none;
+            }
+
+            /* Display rows as blocks */
+            tbody, tr, td {
+                display: block;
+                width: 100%;
+            }
+
+            tr {
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+                border: 1px solid #ddd;
+                padding: 10px;
+            }
+
+            /* Display column names for mobile under each data cell */
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 50%;
+                padding-left: 10px;
+                font-weight: bold;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="font-family: 'Times New Roman', Times, serif;">! View All Candidate !</h1>
+    <div class="container">
+        <table id="example">
+            <thead>
+                <tr>
+                    <th>Sr.No</th>
+                    <th>Full Name</th>
+                    <th>Email ID</th>
+                    <th>Contact No</th>
+                    <th>Job Title</th>
+                    <th>Company</th>
+                    <th>Apply Date</th>
+                    <th>Resume</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                {% if request.user.id == i.job.recruiter.user.id %}
+                <tr>
+                    <td data-label="Sr.No">{{ i.id }}</td>
+                    <td data-label="Full Name">{{i.student.user.first_name}} {{i.student.user.last_name}}</td>
+                    <td data-label="Email ID">{{i.student.user.username}}</td>
+                    <td data-label="Contact No">{{i.student.mobile}}</td>
+                    <td data-label="Job Title">{{ i.job.job_title | truncatewords:4 }}</td>
+                    <td data-label="Company">{{i.job.recruiter.company}}</td>
+                    <td data-label="Apply Date">{{i.applydate}}</td>
+                    <td data-label="Resume"><a href="{{i.resume.url}}">Resume</a></td>
+                    <td data-label="Action">
+                        <button class="btn btn-danger">
+                            <a href="{% url 'jobdelete' i.id %}" style="text-decoration: none; color: whitesmoke; font-weight: 600;">Delete</a>
+                        </button>
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

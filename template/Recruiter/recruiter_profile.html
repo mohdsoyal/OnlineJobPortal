@@ -1,0 +1,56 @@
+{% include 'Recruiter/recuiter_navbar.html' %}
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Profile Navigation Section -->
+            <div class="col-md-4">
+                <div class="card">
+                    <!-- Display profile image with circular styling and the Edit button over the image -->
+                    <div class="position-relative">
+                        <img src="{{profiledata.image.url}}" class="card-img-top" alt="Profile Image" style="width: 200px; height: 200px; border-radius: 50%; display: block; margin: auto;">
+                        <a href="{%  url 'edit_recruiter_profile' %}" class="btn btn-primary position-absolute top-2 left-2 end-0 m-2">Edit</a>
+                    </div>
+                    <div class="card-body text-center">
+                        <h2 class="card-title" style="font-family: 'Times New Roman', Times, serif;">{{user.first_name}} {{user.last_name}}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Details Section -->
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Basic Info</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tr>
+                                <td>First Name</td>
+                                <td>{{user.first_name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Last Name</td>
+                                <td>{{user.last_name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>{{user.username}}</td>
+                            </tr>
+                            <tr>
+                                <td>Mobile Number</td>
+                                <td>{{profiledata.mobile}}</td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td>{{profiledata.company_address}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optionally include Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-QrRrJBq0Q5

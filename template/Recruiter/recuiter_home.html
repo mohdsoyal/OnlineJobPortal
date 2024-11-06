@@ -1,0 +1,26 @@
+{% include 'Recruiter/recuiter_navbar.html' %}
+
+<style>
+   
+    img {
+        max-width: 100%; 
+        height: auto; 
+        display: block;
+        margin: 0 auto; 
+    }
+
+   
+    @media only screen and (max-width: 768px) {
+        img {
+            width: 90%; 
+        }
+    }
+</style>
+
+<h3 style="text-align: center; font-family: 'Times New Roman', Times, serif; margin-top: 20px;">Welcome Recruiter : {{ user.first_name }} {{user.last_name}}</h3>
+
+
+<img src="{% url 'job_application_percentage_chart' %}" alt="Application Percentage Chart">  
+
+
+{% include 'footer.html' %}

@@ -1,0 +1,24 @@
+{% include 'admin_navbar.html' %}
+
+
+<form action="" method="post" class="container mt-5" style="max-width: 500px; margin: auto; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+    <h1 style="text-align: center; font-family: 'Times New Roman', Times, serif;">! Change Status !</h1>
+    {% csrf_token %}
+
+    <div class="mb-4">
+        <label for="username" style="font-weight: bold;">Recruiter Name</label>
+        <input type="text" id="username" name="user" value="{{data.user.first_name}} {{data.user.last_name}}" class="form-control"  readonly>
+    </div>
+
+    <div class="mb-3">
+        <label for="password" style="font-weight: bold;">Status</label>
+       <select name="status" id="" class="form-control">
+        <option value="Accepted">Accepted</option>
+        <option value="Rejected">Rejected</option>
+       </select>
+    </div>
+    <div class="text-center mb-3" >
+        <input type="submit" value="Change Status" class="btn btn-success mt-3">
+    </div>
+   
+</form>

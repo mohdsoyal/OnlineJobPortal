@@ -1,0 +1,164 @@
+{% include 'admin_navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiter Pendings</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+    <!-- DataTables Buttons Extension CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+
+    <!-- JSZip for Excel Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <!-- PDFMake for PDF Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/vfs_fonts.js"></script>
+
+    <!-- Add some basic CSS to style the container and table -->
+    <style>
+        .container {
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        table.dataTable {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        /* For screens larger than 768px */
+        @media (max-width: 768px) {
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+
+            /* Hide table headers on small screens */
+            table thead {
+                display: none;
+            }
+
+            /* Display rows as block on small screens */
+            table, tbody, tr, td {
+                display: block;
+                width: 100%;
+            }
+
+            tr {
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+                border: 1px solid #ddd;
+                padding: 10px;
+            }
+
+            /* Display column headers in each cell for small screens */
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 50%;
+                padding-left: 10px;
+                font-weight: bold;
+                text-align: left;
+            }
+        }
+
+        /* For very small screens, below 480px */
+        @media (max-width: 480px) {
+            td {
+                padding: 6px;
+                font-size: 10px;
+            }
+
+            td::before {
+                font-size: 10px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center; font-family: 'Times New Roman', Times, serif; margin-top: 10px;">! All Recruiters !</h1>
+    <div class="container">
+        <table id="example" class="display nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Sr.No</th>
+                    <th>Full Name</th>
+                    <th>Email Id</th>
+                    <th>Contact</th>
+                    <th>Company Name</th>
+                    <th>Company Address</th>
+                    <th>Industry</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td data-label="Sr.No">{{ i.id }}</td>
+                    <td data-label="Full Name">{{ i.user.first_name }} {{ i.user.last_name }}</td>
+                    <td data-label="Email Id">{{ i.user.username }}</td>
+                    <td data-label="Contact">{{ i.mobile }}</td>
+                    <td data-label="Company Name">{{ i.company }}</td>
+                    <td data-label="Company Address">{{ i.company_address }}</td>
+                    <td data-label="Industry">{{ i.industry }}</td>
+                    <td data-label="Status">{{ i.status }}</td>
+                    <td data-label="Action">
+                        <a href="{% url 'change_status' i.id %}" class="btn btn-success btn-sm">Change Status</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                dom: 'Bfrtip', // Define the element layout with Buttons
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print' // Export options
+                ],
+                responsive: true // Make table responsive
+            });
+        });
+    </script>
+</body>
+
+</html>

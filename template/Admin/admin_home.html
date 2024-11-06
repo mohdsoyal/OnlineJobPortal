@@ -1,0 +1,47 @@
+{% include 'admin_navbar.html' %}
+
+<h1 style="text-align: center; font-family: 'Times New Roman', Times, serif; margin-top: 10px;">Welcome Admin Home</h1>
+
+<div class="container mt-5">
+    <div class="row mt-5">
+        <!-- Total Recruiter Section -->
+        <div class="col-md-6 mb-4">
+            <div class="shadow-box p-4 text-center">
+                <h5><i class="fas fa-user-tie"></i> Total Recruiter</h5>
+                <h6>{{ requiter }}</h6>
+            </div>
+        </div>
+
+        <!-- Total User Section -->
+        <div class="col-md-6 mb-4">
+            <div class="shadow-box p-4 text-center">
+                <h5><i class="fas fa-users"></i> Total User</h5>
+                <h6>{{ user }}</h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div class="mb-5"></div>
+
+{% include 'footer.html' %}
+
+<!-- Custom CSS -->
+<style>
+    .shadow-box {
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .shadow-box:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+   
+    .fas {
+        margin-right: 10px;
+        font-size: 1.5em;
+    }
+</style>

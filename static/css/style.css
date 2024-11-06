@@ -1,0 +1,74 @@
+.main-portal {
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.job {
+    color: red;
+}
+
+.portal {
+    color: green;
+}
+
+.social-icon {
+    padding-left: 10%;
+}
+
+.icon a {
+    margin: 0 10px;
+    color: #333;
+    font-size: 24px;
+}
+
+.icon a:hover {
+    color: #007bff;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: maroon;
+}
+
+.navbar-brand {
+    padding-left: 20px;
+    font-weight: bold;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+}
+.navbar-nav{
+ font-family: 'Times New Roman', Times, serif; 
+ margin-right: 40px;
+ font-weight: 600;  
+}
+
+.navbar-brand:hover {
+    color: red;
+}
+
+.nav {
+    margin-right: 3%;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.nav-link {
+    color: whitesmoke;
+    font-size: 17px;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: yellow;
+    font-weight: bold;
+    background-color: red;
+    border-radius: 20px;
+}
+
+.fa {
+    margin-right: 5px;
+    font-size: 15px;
+}
+

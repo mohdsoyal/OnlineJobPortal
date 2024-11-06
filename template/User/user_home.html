@@ -1,0 +1,35 @@
+{% include 'header.html' %}
+
+<h1 class="text-center mt-3" style="font-family: 'Times New Roman', Times, serif;">Welcome : <strong> {{user.first_name}} {{user.last_name}}</strong></h1>
+
+<div class="container mt-4"></div>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-4 p-4">
+        
+        {% for i in data %}
+        <div class="col">
+            <div class="card border">
+                <div class="card-body">
+                    <h5 class="card-title">{{ i.job_title|truncatewords:5 }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ i.recruiter.company }}</h6>
+                    <p class="card-text">Location: {{ i.location }}</p>
+                    <p class="card-text">Start Date: {{ i.start_date }}</p>
+                    <p class="card-text">End Date: {{ i.end_date }}</p>
+                </div>   
+                    {% if i.id in li %}
+                    <button class="btn btn-success">
+                        <a href="" style="text-decoration: none; color: whitesmoke;">Applyed</a>
+                    </button>
+                    {% else %}
+                    <button class="btn btn-outline-success">
+                        <a href="{% url 'job_detalis' i.id %}" style="text-decoration: none; color: orange; font-weight: 600;">Apply</a>
+                    </button>
+                    {% endif %}
+               
+                <!-- <a href="{% url 'job_detalis' i.id %}" class="btn btn-outline-success">Apply</a> -->
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div> 
+
+{% include 'footer.html'%}

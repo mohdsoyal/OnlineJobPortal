@@ -1,0 +1,125 @@
+{% load static %}
+
+{% include 'navbar.html' %}
+
+{% block contain %}
+<style>
+    .job-area {
+        padding-top: 50px;
+        background-color: #8fc7dd74;
+    }
+
+    .default-btn {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 16px;
+        padding-bottom: 12px;
+        color: whitesmoke;
+        background-color: #f03737;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .form-control {
+        padding-left: 20px;
+        padding-right: 30px;
+        padding-top: 16px;
+        padding-bottom: 12px;
+        background-color: whitesmoke;
+        border: none;
+        border-radius: 5px;
+    }
+
+    @media only screen and (max-width: 768px) {
+
+       .search-location{
+        margin-top: 20px;
+       }
+          
+       .job-search-btn{
+        text-align: center;
+        margin-top: 20px;
+       }
+
+       .chart {
+        width: 100%; 
+        height: auto; 
+    }
+
+    .chart img {
+        max-width: 100%; 
+        height: auto; 
+    }
+        }
+</style>
+
+<body>
+
+    <div class="chart mt-3 d-flex justify-content-center">
+        <div class="me-3">
+            <img src="{% url 'job_posting_chart' %}" >
+        </div> 
+    </div>
+
+    
+
+
+    <!--job search contain -->
+    <section class="job-area">
+        <div class="container">
+            <center>
+                <h1>FIND THE JOB THAT FITS YOUR LIFE</h1> <br />
+                <h4>We offer thousands of jobs vacancies right now</h4> <br />
+            </center>
+        </div>
+
+        <div class="container">
+            <div class="search-job-row row">
+                <div class="contact-form  col-md-12">
+                    <form class="search-form row" method="GET" action="{% url 'search' %}">
+                        <div class="form-group col-md-6 smallpadding search-job">
+                            <input class="form-control" type="search" required placeholder="Job Title" name="search" value="{{ search_query }}">
+                        </div>
+                        <div class="form-group col-md-4 smallpadding search-location">
+                            <input class="form-control" type="search" required placeholder="Location" name="location" value="{{ location_query }}">
+                        </div>
+                        <div class="form-group col-md-2 smallpadding job-search-btn">
+                            <button type="submit" class="default-btn">Search</button>
+                        </div>
+                    </form>
+                    
+                    <br>
+                    <!-- <p>Browse job offers by Category or Location</p>
+                    <br /> -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end search section  -->
+
+
+    <h2 class="subtitle text-center mt-5" style="font-family: 'Times New Roman', Times, serif;">Lastest Jobs </h2>
+    <div class="container mt-4">
+        <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+            {% for i in data %}
+            <div class="col">
+                <div class="card border">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i.job_title|truncatewords:5 }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ i.recruiter.company }}</h6>
+                        <p class="card-text">Location: {{ i.location }}</p>
+                        <p class="card-text">Start Date: {{ i.start_date }}</p>
+                        <p class="card-text">End Date: {{ i.end_date }}</p>
+                    </div>
+                    <a href="{% url 'user_login' %}" class="btn btn-outline-success">View More</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+   
+
+{% endblock %}
+
+{% include 'footer.html'%}

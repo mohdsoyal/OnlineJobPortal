@@ -1,0 +1,62 @@
+{% load static %}
+
+<style>
+    @media only screen and (max-width: 768px) {
+     .div {
+           height: 100%; 
+           padding: 10px;
+           background-color: black; 
+       }
+  
+       .Placement{
+       display: none;
+       } 
+
+       
+
+      
+      
+      
+   }
+</style>
+
+<div class="div mt-3" style="background-color: black; width: 100%; height: auto;">
+    <div class="container" style="margin: 10px;">
+        <div class="row">
+            <div class="col-md-4 mt-5">
+                <h3 class="text-white" style="font-weight: bold; font-family: 'Times New Roman', Times, serif;">Contact
+                    Information</h3>
+                <p style="color: yellow; font-size: 18px;"><i class="fa fa-map-marker text-danger"></i>Farrukhabad
+                    (Uttar Pradesh)</p>
+                <p style="color: yellow; font-size: 18px;"><i
+                        class="fa fa-envelope text-danger"></i>mohdsoyal6393@gmail.com</p>
+                <p style="color: yellow; font-size: 18px;"><i class="fa fa-phone text-danger"></i>+91 6393276432 / 91+
+                    8576894509</p>
+            </div>
+
+
+            <div class="col-md-4 mt-5 Placement">
+                <h3 class="text-white" style="font-weight: bold; font-family: 'Times New Roman', Times, serif;">Online
+                    Placement</h3>
+                <p style="color: yellow; font-size: 18px;">An Online Job Portal connects job seekers and employers,
+                    enabling job applications, profile creation, and streamlined recruitment processes
+                       </p>
+            </div>
+
+
+            <div class="col-md-4 mt-5 news">
+                <h3 class="text-white" style="font-weight: bold; font-family: 'Times New Roman', Times, serif;">
+                    Newsletter</h3>
+                <p style="color: yellow; font-size: 18px;">If you want the any extra information then send me email ID <a  href="{% url 'adminPage' %}" style="text-decoration: none; color: yellow;"></i>@</a>
+                </p>
+                <form action="" method="post" class="form-inline d-flex">
+                    {% csrf_token %}
+                    <input type="email" name="email" id="email" placeholder="Email ID" required class="form-control"
+                        style="margin-right: 5px;">
+
+                    <button type="submit" class="btn btn-warning">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
